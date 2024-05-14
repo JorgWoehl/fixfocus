@@ -1,5 +1,3 @@
-[![View detectOS on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/59695-detectos)
-
 # fixfocus
 
 **fixfocus** provides a workaround for an annoying, long-standing MATLAB user interface bug that occurs when selection dialog boxes are opened from app window or `uifigure` callback functions.
