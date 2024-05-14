@@ -36,7 +36,7 @@ end
 
 % Default text to appear in superimposed title bar is that of the calling
 % app or 'uifigure' window
-if (nargin <1)
+if (nargin < 1)
     msg = appWindow.Name;
 end
 
@@ -46,15 +46,13 @@ ff = figure('Position',appWindow.Position, 'MenuBar','none',...
     'NumberTitle','off', 'Visible','off',...
     'CloseRequestFcn','', 'DeleteFcn', @(src,event) figure(appWindow));
 
-% Dummy figure position is the title bar of the calling app or 'uifigure'
-% window
+% Superimpose it on the title bar of the calling app or 'uifigure' window
 ff.Position(2) = ff.Position(2)+ff.Position(4);
 ff.Position(4) = 0;
 
-% Move dummy figure into focus, then make it invisible
+% Move it into focus, then make it invisible
 ff.Visible = 'on';
 drawnow;
-pause(10);
 ff.Visible = 'off';
 
 end
