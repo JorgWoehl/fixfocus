@@ -34,7 +34,7 @@ function ff = fixfocus(msg)
 appWindow = gcbf;
 if isempty(appWindow)
     % If no callback is executing, find instead the last figure that had focus
-    h = findall(0, 'Type','figure');
+    h = findall(groot, 'Type','figure');
     if isempty(h)
         error('uifix:UIFigureNotFound', 'App/uifigure window not found.');
     else
