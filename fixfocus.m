@@ -26,12 +26,21 @@ function ff = fixfocus(msg)
 %See also uigetfile, uigetdir, uiputfile, uiopen, uisave
 
 % Created 2024-05-13 by Jorg C. Woehl
+% 2024-05-14 (JCW): Added 'uimenu' support.
+%
 % Inspired by https://www.mathworks.com/matlabcentral/answers/296305-appdesigner-window-ends-up-in-background-after-uigetfile#answer_427026
 
 % Find the handle of the 'uifigure' whose callback is currently executing
 appWindow = gcbf;
 if isempty(appWindow)
     error('uifix:UIFigureNotFound', 'Calling app/uifigure not found.');
+end
+
+% Check if 'appWindow' has a menu bar
+menuHeight = 0;
+h = get(appWindow, 'Children');
+if any(strcmp(get(h,'Type'), 'uimenu'))
+    menuHeight = 22;
 end
 
 % Default text to appear in superimposed title bar is that of the calling
@@ -47,7 +56,7 @@ ff = figure('Position',appWindow.Position, 'MenuBar','none',...
     'CloseRequestFcn','', 'DeleteFcn', @(src,event) figure(appWindow));
 
 % Superimpose it on the title bar of the calling app or 'uifigure' window
-ff.Position(2) = ff.Position(2)+ff.Position(4);
+ff.Position(2) = ff.Position(2) + ff.Position(4) + menuHeight;
 ff.Position(4) = 0;
 
 % Move it into focus, then make it invisible
