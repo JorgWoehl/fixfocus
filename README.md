@@ -2,17 +2,17 @@
 
 # fixfocus
 
-**fixfocus** provides a workaround for an annoying, long-standing MATLAB user interface bug that occurs when a selection dialog box is opened in presence of an app/`uifigure` window that has focus.
+**fixfocus** provides a workaround for two annoying, long-standing MATLAB user interface bugs that occur when a selection dialog box is opened from an app/`uifigure` window that has focus.
 
 ## Background
 
-Since at least R2016b, MATLAB does **not** move the selection dialog box into focus when an app or `uifigure` window is present and has focus. Instead, the selection dialog box appears **behind** the app or `uifigure` window:
+The first bug seems to have been fixed in R2025a. In all prior releases, dating back to at least R2016b, MATLAB did **not** move the selection dialog box into focus when an app or `uifigure` window was present and had focus. Instead, the selection dialog box appeared **behind** the app or `uifigure` window:
 
 ![uigetfile](./assets/figure1.png)
 
-`fixfocus` provides a workaround that automatically brings the selection dialog box into focus. 
+The second bug persists to this day in MATLAB: When the the selection dialog box is closed by the user, the focus is **not** returned to the app/`uifigure` window from which it was called.
 
-When the the selection dialog box is closed by the user, `fixfocus` then returns the focus to the app/`uifigure` window -- thus fixing a second user interface bug that persists to this day in MATLAB.
+`fixfocus` provides a workaround for both of these issues, bringing the selection dialog box into focus and returning the focus to the calling app/'uifigure' after it is closed. 
 
 ## Usage
 
